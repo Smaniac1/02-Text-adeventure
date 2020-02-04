@@ -3,10 +3,10 @@
 		"name": "Intro",
 		"desc": "Your the leader of a country after a bad event, your job is to pass legislation to keep you nation well, if one of the scores hits zero you lose, you will also see the scores you do have at the end, do you understand?\n",
 		"exits": [{
-			"exit": "1",
+			"exit": "Description 1",
 			"target": "LEGI1"
 		}, {
-			"exit": "2",
+			"exit": "Description 2",
 			"target": "HELP0"
 		}
         ]
@@ -15,19 +15,19 @@
 		"name": "What do you not understand?",
 		"desc": "You are facing the north side of a white house.  There is no door here,\nand all the windows are barred.",
 		"exits": [{
-			"exit": "1",
+			"exit": "Description 1",
 			"target": "HELP1"
 		}, {
-			"exit": "2",
+			"exit": "Description 2",
 			"target": "HELP2"
 		},  {
-			"exit": "3",
+			"exit": "Description 3",
 			"target": "HELP3"
 		},	 {
-			"exit": "4",
+			"exit": "Description 4",
 			"target": "HELP4"
 		},	{
-			"exit": "5",
+			"exit": "Description 5",
 			"target": "LEGI1"
 		}]
 	},

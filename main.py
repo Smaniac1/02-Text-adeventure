@@ -23,6 +23,10 @@ def render(game,current):
     c = game[current]
     print(c["name"])
     print(c["desc"])
+    if len(c["exits"]):
+        print("Choose: ")
+        for p in range(len(c["exits"])):
+            print("{}. {}".format(p+1, c["exits"][p]["exit"]))
 
 def get_input():
     response = input("What do you want to do?: ")
@@ -31,9 +35,12 @@ def get_input():
 
 def update(game,current,response):
     c = game[current]
-    for e in c["exits"]:
-        if response == e["exit"]:
-            return e["target"]
+    if response.isdigit():
+        try:
+            p = int(response) - 1
+            return c["exits"][p]["target"]
+        except:
+            return current
     return current
     
 
