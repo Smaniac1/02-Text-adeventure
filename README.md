@@ -1,2 +1,2 @@
-# 02-Text-adeventure
+# 02-Text-adventure
 This is a Text adventure game for my college class
