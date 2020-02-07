@@ -42,13 +42,6 @@
 			"economy": 0,
 			"corruption": 0,
 			"target": "HELP3"
-		},	 {
-			"exit": "",
-			"happiness": 0,
-			"unrest": 0,
-			"economy": 0,
-			"corruption": 0,
-			"target": "HELP4"
 		},	{
 			"exit": "I don't need any help, I just messed up/wanted to check it out",
 			"happiness": 0,
@@ -108,25 +101,6 @@
 			"target": "LEGI1"
 		}, {
 			"exit": "I don't understand/need help with something",
-			"happiness": 0,
-			"unrest": 0,
-			"economy": 0,
-			"corruption": 0,
-			"target": "HELP0"
-		}]
-	},
-	"HELP4": {
-		"name": "",
-		"desc": "",
-		"exits": [{
-			"exit": "1",
-			"happiness": 0,
-			"unrest": 0,
-			"economy": 0,
-			"corruption": 0,
-			"target": "LEGI1"
-		},	{
-			"exit": "2",
 			"happiness": 0,
 			"unrest": 0,
 			"economy": 0,
