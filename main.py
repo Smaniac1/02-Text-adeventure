@@ -26,31 +26,31 @@ score = {
     }
 def render(game,current):
     c = game[current]
-    print("Happiness:", score["Happiness"])
+    print("\n\nHappiness:", score["Happiness"])
     print("Unrest:", score["Unrest"])
     print("Economy:", score["Economy"])
     print("Corruption:",score["Corruption"])
     print(c["name"])
     print(c["desc"])
     if len(c["exits"]):
-        print("Choose: ")
+        print("\nChoose: ")
         for p in range(len(c["exits"])):
             print("{}. {}".format(p+1, c["exits"][p]["exit"]))
 
 def get_input():
-    response = input("Make a choice: ")
+    response = input("\nMake a choice: ")
     response = response.upper().strip()
     return response
 
-def update(game,current,response,Happiness,):
+def update(game,current,response):
     c = game[current]
     if response.isdigit():
         try:
             p = int(response) - 1
-            score["Happiness"] += c["happiness"]
-            score["Unrest"] += c["unrest"]
-            score["Economy"] += c["economy"]
-            score["Corruption"] += c["corruption"]
+            score["Happiness"] += c["exits"][p]["happiness"]
+            score["Unrest"] += c["exits"][p]["unrest"]
+            score["Economy"] += c["exits"][p]["economy"]
+            score["Corruption"] += c["exits"][p]["corruption"]
             return c["exits"][p]["target"]
         except:
             return current
@@ -99,31 +99,30 @@ def main():
             break
         else:
             render(game,current)
-            for e in end_game:
-                if current == e:
-                    print("You've made your decisions!")
-                    print("Your stats ended up looking like this:")
-                    print("Happiness:", score["Happiness"])
-                    print("Unrest:", score["Unrest"])
-                    print("Economy:", score["Economy"])
-                    print("Corruption:",score["Corruption"])
-                    total_score = score["Happiness"] + score["Unrest"] + score["Economy"] + score["Corruption"]
-                    if total_score > 350:
-                        print("Through your efforts you have made a near perfect nation and your people have high hopes for the future")
-                        print("AMAZING VICTORY")
-                    elif total_score > 300:
-                        print("Through your efforts you have made a great nation and your people believe things will only get better from here")
-                        print("GREAT VICTORY")
-                    elif total_score > 250:
-                        print("Through your efforts you have made an good nation but, your people don't fully believe that the nation will become the best")
-                        print("GOOD VICTORY")
-                    elif total_score > 200:
-                        print("Through your efforts you have barely squeezed out a nation and your people don't believe you will make it better, but it's better than what was happening before.")
-                        print("MINOR VICTORY")
-                    else:
-                        print("Despite your efforts your people aren't happy and eventually your are removed from power.")
-                        print("YOU LOSE")
-                    break #break out of the while loop
+            if current in end_game:
+                print("You've made your decisions!")
+                print("Your stats ended up looking like this:")
+                print("Happiness:", score["Happiness"])
+                print("Unrest:", score["Unrest"])
+                print("Economy:", score["Economy"])
+                print("Corruption:",score["Corruption"])
+                total_score = score["Happiness"] + score["Unrest"] + score["Economy"] + score["Corruption"]
+                if total_score > 350:
+                    print("Through your efforts you have made a near perfect nation and your people have high hopes for the future")
+                    print("AMAZING VICTORY")
+                elif total_score > 300:
+                    print("Through your efforts you have made a great nation and your people believe things will only get better from here")
+                    print("GREAT VICTORY")
+                elif total_score > 250:
+                    print("Through your efforts you have made an good nation but, your people don't fully believe that the nation will become the best")
+                    print("GOOD VICTORY")
+                elif total_score > 200:
+                    print("Through your efforts you have barely squeezed out a nation and your people don't believe you will make it better, but it's better than what was happening before.")
+                    print("MINOR VICTORY")
+                else:
+                    print("Despite your efforts your people aren't happy and eventually your are removed from power.")
+                    print("YOU LOSE")
+                break #break out of the while loop
 
         response = get_input()
 
@@ -132,7 +131,7 @@ def main():
 
         current = update(game,current,response)
 
-    print("Thanks for playing!")
+    print("\nThanks for playing!")
 
 # run the main function
 if __name__ == '__main__':
