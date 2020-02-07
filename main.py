@@ -74,7 +74,7 @@ def main():
             print("Corruption:",score["Corruption"])
             break
         elif score["Unrest"] >= 100:
-            print("Your people have had enough. You get thrown out of power and goes back into chaos.")
+            print("Your people have had enough. You get thrown out of power and the nation goes back into chaos.")
             print("Your final scores were:")
             print("Happiness:", score["Happiness"])
             print("Unrest:", score["Unrest"])
