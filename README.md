@@ -1,2 +1,2 @@
 # 02-Text-adventure
-This is a Text adventure game for my college class
+This is a Text adventure game called Legislation Devistation. You play as the leader of country that has just gotten out of hard times. Your job is to pass legislation to keep your peoples happiness, the countries unrest, the economy, and the level of corruption in check. If one of these stats is to high (unrest & corruption) or to low (happiness & economy) then you automaticlly lose. If you get to the end then all the stats will be added together and if there high enough, you win, if there to low, then you lose. 

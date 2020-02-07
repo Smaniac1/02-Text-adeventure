@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys, os, json
+import random
 # Check to make sure we are running the correct version of Python
 assert sys.version_info >= (3,7), "This script requires at least Python 3.7"
 
@@ -16,11 +17,19 @@ def load_files():
         return game
     except:
         print("There was a problem reading either the game or item file.")
-        os._exit(1)
-
-
+        os._exit(1) 
+score = {
+    "Happiness": 50,
+    "Unrest": 50,
+    "Economy": 50,
+    "Corruption": 50
+    }
 def render(game,current):
     c = game[current]
+    print("Happiness:", score["Happiness"])
+    print("Unrest:", score["Unrest"])
+    print("Economy:", score["Economy"])
+    print("Corruption:",score["Corruption"])
     print(c["name"])
     print(c["desc"])
     if len(c["exits"]):
@@ -29,15 +38,19 @@ def render(game,current):
             print("{}. {}".format(p+1, c["exits"][p]["exit"]))
 
 def get_input():
-    response = input("What do you want to do?: ")
+    response = input("Make a choice: ")
     response = response.upper().strip()
     return response
 
-def update(game,current,response):
+def update(game,current,response,Happiness,):
     c = game[current]
     if response.isdigit():
         try:
             p = int(response) - 1
+            score["Happiness"] += c["happiness"]
+            score["Unrest"] += c["unrest"]
+            score["Economy"] += c["economy"]
+            score["Corruption"] += c["corruption"]
             return c["exits"][p]["target"]
         except:
             return current
@@ -52,12 +65,65 @@ def main():
     game = load_files()
 
     while True:
-        render(game,current)
-
-        for e in end_game:
-            if current == e:
-                print("You win!")
-                break #break out of the while loop
+        if score["Happiness"] <= 0:
+            print("Your people are unhappy. They won't rise up but instead leave peacefully in search of a new happier life.")
+            print("Your final scores were:")
+            print("Happiness:", score["Happiness"])
+            print("Unrest:", score["Unrest"])
+            print("Economy:", score["Economy"])
+            print("Corruption:",score["Corruption"])
+            break
+        elif score["Unrest"] >= 100:
+            print("Your people have had enough. You get thrown out of power and goes back into chaos.")
+            print("Your final scores were:")
+            print("Happiness:", score["Happiness"])
+            print("Unrest:", score["Unrest"])
+            print("Economy:", score["Economy"])
+            print("Corruption:",score["Corruption"])      
+            break
+        elif score["Economy"] <= 0:
+            print("Your people are to poor. While they might like living in your country, they leave in mass in search of a place were they can make a living and not starve.")
+            print("Your final scores were:")
+            print("Happiness:", score["Happiness"])
+            print("Unrest:", score["Unrest"])
+            print("Economy:", score["Economy"])
+            print("Corruption:",score["Corruption"])
+            break
+        elif score["Corruption"] >= 100:
+            print("You let corruption grow right under your nose, with so much corruption you are thrown out of power and a new, worse goverment takes power.")
+            print("Your final scores were:")
+            print("Happiness:", score["Happiness"])
+            print("Unrest:", score["Unrest"])
+            print("Economy:", score["Economy"])
+            print("Corruption:",score["Corruption"])
+            break
+        else:
+            render(game,current)
+            for e in end_game:
+                if current == e:
+                    print("You've made your decisions!")
+                    print("Your stats ended up looking like this:")
+                    print("Happiness:", score["Happiness"])
+                    print("Unrest:", score["Unrest"])
+                    print("Economy:", score["Economy"])
+                    print("Corruption:",score["Corruption"])
+                    total_score = score["Happiness"] + score["Unrest"] + score["Economy"] + score["Corruption"]
+                    if total_score > 350:
+                        print("Through your efforts you have made a near perfect nation and your people have high hopes for the future")
+                        print("AMAZING VICTORY")
+                    elif total_score > 300:
+                        print("Through your efforts you have made a great nation and your people believe things will only get better from here")
+                        print("GREAT VICTORY")
+                    elif total_score > 250:
+                        print("Through your efforts you have made an good nation but, your people don't fully believe that the nation will become the best")
+                        print("GOOD VICTORY")
+                    elif total_score > 200:
+                        print("Through your efforts you have barely squeezed out a nation and your people don't believe you will make it better, but it's better than what was happening before.")
+                        print("MINOR VICTORY")
+                    else:
+                        print("Despite your efforts your people aren't happy and eventually your are removed from power.")
+                        print("YOU LOSE")
+                    break #break out of the while loop
 
         response = get_input()
 
